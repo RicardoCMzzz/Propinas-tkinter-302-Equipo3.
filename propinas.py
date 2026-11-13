@@ -3,7 +3,6 @@ from tkinter import messagebox
 import mysql.connector
 from mysql.connector import Error
 
-# CONFIGURACIÓN DE LA BASE DE DATOS
 DB_CONFIG = {
     "host": "localhost",
     "user": "root",
@@ -12,8 +11,6 @@ DB_CONFIG = {
     "port": 3306
 }
 
-
-# FUNCIÓN PARA CALCULAR LA PROPINA
 def calcular():
 
     total_texto = entry_total.get().strip()
@@ -44,11 +41,9 @@ def calcular():
         )
         return
 
-    # OPERACIONES
     propina = total * (porcentaje / 100)
     total_pagar = total + propina
 
-    # MOSTRAR RESULTADOS
     label_propina.config(
         text=f"Propina: ${propina:.2f}"
     )
@@ -57,7 +52,6 @@ def calcular():
         text=f"Total a pagar: ${total_pagar:.2f}"
     )
 
-    # GUARDAR EN MYSQL
     try:
         conn = mysql.connector.connect(**DB_CONFIG)
 
@@ -89,7 +83,6 @@ def calcular():
         )
 
 
-# FUNCIÓN PARA LIMPIAR
 def limpiar():
 
     entry_total.delete(0, tk.END)
@@ -106,7 +99,6 @@ def limpiar():
     label_guardado.config(text="")
 
 
-# VENTANA PRINCIPAL
 ventana = tk.Tk()
 
 ventana.title("PROPINAS")
@@ -114,7 +106,6 @@ ventana.geometry("350x320")
 ventana.resizable(False, False)
 
 
-# TÍTULO
 tk.Label(
     ventana,
     text="PROPINAS",
@@ -122,7 +113,6 @@ tk.Label(
 ).pack(pady=10)
 
 
-# CAMPO DEL TOTAL
 tk.Label(
     ventana,
     text="Total de la cuenta:"
@@ -137,7 +127,6 @@ entry_total = tk.Entry(
 entry_total.pack(pady=5)
 
 
-# CAMPO DEL PORCENTAJE
 tk.Label(
     ventana,
     text="Porcentaje de propina (%):"
@@ -152,7 +141,6 @@ entry_porc = tk.Entry(
 entry_porc.pack(pady=5)
 
 
-# BOTÓN CALCULAR
 tk.Button(
     ventana,
     text="Calcular",
@@ -165,7 +153,6 @@ tk.Button(
 ).pack(pady=10)
 
 
-# RESULTADO DE LA PROPINA
 label_propina = tk.Label(
     ventana,
     text="Propina: $0.00",
@@ -175,7 +162,6 @@ label_propina = tk.Label(
 label_propina.pack()
 
 
-# RESULTADO TOTAL
 label_total_pagar = tk.Label(
     ventana,
     text="Total a pagar: $0.00",
@@ -185,7 +171,6 @@ label_total_pagar = tk.Label(
 label_total_pagar.pack()
 
 
-# MENSAJE DE GUARDADO
 label_guardado = tk.Label(
     ventana,
     text="",
@@ -195,7 +180,6 @@ label_guardado = tk.Label(
 label_guardado.pack(pady=5)
 
 
-# BOTÓN LIMPIAR
 tk.Button(
     ventana,
     text="Limpiar",
@@ -204,5 +188,4 @@ tk.Button(
 ).pack()
 
 
-# EJECUTAR PROGRAMA
 ventana.mainloop()
