@@ -118,7 +118,7 @@ ventana.resizable(False, False)
 tk.Label(
     ventana,
     text="PROPINAS",
-    font=("Arial", 16, "bold")
+    font=("Arial", 16, "bold italic")
 ).pack(pady=10)
 
 
@@ -160,7 +160,8 @@ tk.Button(
     bg="#33CCCC",
     fg="white",
     width=20,
-    font=("Arial", 11, "bold")
+    bd=10,
+    font=("Arial", 11, "bold italic")
 ).pack(pady=10)
 
 
@@ -178,7 +179,7 @@ label_propina.pack()
 label_total_pagar = tk.Label(
     ventana,
     text="Total a pagar: $0.00",
-    font=("Arial", 12, "bold")
+    font=("Arial", 12, "bold italic")
 )
 
 label_total_pagar.pack()
